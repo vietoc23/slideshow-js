@@ -1,0 +1,66 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#container {
+  width: 960px;
+  margin: 20px auto;
+  background-color: #222;
+}
+
+.gallery {
+  width: 100%;
+  text-align: center;
+}
+
+.gallery img {
+  width: 80%;
+  margin: 20px 40px;
+}
+
+.gallery button {
+  font-size: 80px;
+  border: none;
+  outline: none;
+  background: none;
+  color: white;
+  vertical-align: 300%;
+}
+
+.gallery button:active {
+  text-shadow: 0 0 20px #666;
+}
+
+#container p {
+  margin: 0 auto;
+  margin-bottom: 20px;
+  width: 100px;
+  background-color: #ccc;
+  text-align: center;
+  line-height: 40px;
+}
+
+.control {
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+.control button {
+  font-size: 20px;
+  border: none;
+  outline: none;
+  background: none;
+  background-color: #666;
+  color: white;
+  width: 100px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.control button:active {
+  box-shadow: 2px 5px 10px inset #ccc;
+}
+
+

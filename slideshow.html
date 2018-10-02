@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Page Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+  <script src="main.js"></script>
+</head>
+
+<body>
+  <div id="container">
+    <div class="gallery">
+      <button id="prev">&lang;</button>
+      <img src="" alt="" width="720px">
+      <button id="next">&rang;</button>
+    </div>
+
+    <p>Ảnh <span id="indicator"></span></p>
+
+    <div class="control">
+      <button id="stop">Pause</button>
+      <button id="start">Play</button>
+    </div>
+  </div>
+
+  <script>
+    let imageSrc = ["http://blogs.columbian.com/cat-tales/wp-content/uploads/sites/43/2017/12/OrangeCat1.jpg",
+      "https://www.pets4homes.co.uk/images/articles/3459/large/6-important-life-skills-that-mother-cats-teach-their-kittens-56b31aae33284.jpg",
+      "https://www.pets4homes.co.uk/images/articles/3941/large/the-start-of-the-cat-fancy-58a59367edfc5.jpg",
+      "https://www.saga.co.uk/contentlibrary/saga/publishing/verticals/home-and-garden/pets/cats/protect-cats-from-birds.jpg",
+"https://i.redd.it/2ypphht1yttz.jpg", "https://face4pets.files.wordpress.com/2016/08/cat-parent5.jpg"
+    ];
+    let index = 0;
+    let flag = true;
+    let len = imageSrc.length;
+    let img = document.querySelector('img');
+    img.src = imageSrc[index];
+
+    let interval;
+
+    function autorun() {
+      if (interval) {
+        clearInterval(interval);
+      }
+      interval = setInterval(() => {
+        if (index >= len - 1) index = 0;
+        else index++;
+        img.src = imageSrc[index];
+        imagePosition();
+      }, 2000);
+    };
+    imagePosition();
+    autorun();
+
+    let stop = document.querySelector("#stop");
+    stop.onclick = function () {
+      setTimeout(() => {
+        clearInterval(interval);
+      }, 0);
+      flag = false;
+    }
+
+
+    let start = document.querySelector("#start");
+    start.onclick = () => {
+      autorun();
+      flag = true;
+    }
+
+    //When press Next/Prev in Stop state, will it still stop or autorun?
+    let next = document.querySelector("#next");
+    next.onclick = () => {
+      if (index >= len - 1) index = 0;
+      else index++;
+      img.src = imageSrc[index];
+      imagePosition();
+      if (flag) {
+        clearInterval(interval);
+        imagePosition();
+        autorun();
+      }
+    }
+
+    let prev = document.querySelector("#prev");
+    prev.onclick = () => {
+      if (index <= 0) index = len - 1;
+      else index--;
+      img.src = imageSrc[index];
+      imagePosition();
+      if (flag) {
+        clearInterval(interval);
+        imagePosition();
+        autorun();
+      }
+    }
+
+    function imagePosition() {
+      let indicator = document.querySelector("#indicator");
+      indicator.innerHTML = `${index+1}/${len}`;
+    }
+  </script>
+</body>
+
+</html>
